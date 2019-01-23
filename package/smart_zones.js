@@ -42,8 +42,8 @@ function _processNowPlayingList(discovery, req, res) {
 
             if (contentItemMap[key] == undefined) {
                 contentItemMap[key] = {
-                    devices:[],
-                    isValidSource : _isValidSource(contentItem.source),
+                    devices: [],
+                    isValidSource: _isValidSource(contentItem.source),
                     source: contentItem.source,
                     location: contentItem.location,
                     sourceAccount: contentItem.sourceAccount
@@ -71,12 +71,12 @@ function _processNowPlayingList(discovery, req, res) {
 }
 
 function _isValidSource(source) {
-   return (source == SOURCE.INTERNET_RADIO
-       || source == SOURCE.PANDORA
-       || source == SOURCE.DEEZER
-       || source == SOURCE.IHEART
-       || source == SOURCE.SPOTIFY
-   );
+    return (source == SOURCE.PANDORA ||
+        source == SOURCE.DEEZER ||
+        source == SOURCE.IHEART ||
+        source == SOURCE.SPOTIFY ||
+        source == SOURCE.TUNEIN
+    );
 }
 
 function _createZone(item, discovery, req, res) {
@@ -90,6 +90,6 @@ function _createZone(item, discovery, req, res) {
     item.zoned = true;
 }
 
-module.exports = function (api) {
+module.exports = function(api) {
     api.registerRestService('/auto/virtualZone', groupIntoVirtualZone);
 };
